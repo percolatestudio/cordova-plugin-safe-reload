@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.percolatestudio.cordova.safereload"
+    version="0.2.0">
+    <name>Safe Reload</name>
+    <description>Cordova plugin to watch and recover after a broken Meteor Hot Code Push.</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,meteor,reload</keywords>
+    <repo>https://github.com/percolatestudio/cordova-plugin-safe-reload.git</repo>
+    
+    <dependency id="org.apache.cordova.file" />
+    <dependency id="com.meteor.cordova-update" />
+
+    <js-module src="www/SafeReload.js" name="SafeReload">
+        <clobbers target="cordova.plugins.percolatestudio.SafeReload" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SafeReload" >
+                <param name="android-package" value="com.percolatestudio.cordova.safereload.PSSafeReload"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <source-file src="src/android/PSSafeReload.java" target-dir="src/com/percolatestudio/cordova/safereload" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="SafeReload">
+                <param name="ios-package" value="PSSafeReload" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/PSSafeReload.h" />
+        <source-file src="src/ios/PSSafeReload.m" />
+
+        <framework src="AssetsLibrary.framework" />
+    </platform>
+
+</plugin>
