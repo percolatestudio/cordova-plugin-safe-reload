@@ -9,3 +9,9 @@ SafeReload attempts to recover from this situation.  After a window reload event
 Install like `cordova plugin add https://github.com/percolatestudio/cordova-plugin-safe-reload.git`.
 
 No application-level code changes required.  Currently only iOS and Android supported.
+
+## License 
+
+MIT. (c) Percolate Studio, maintained by Tim Hingston (@timbotnik).
+
+Safe Reload was developed as part of the [Verso](versoapp.com) project.
