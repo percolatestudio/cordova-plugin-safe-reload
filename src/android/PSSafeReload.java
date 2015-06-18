@@ -96,9 +96,9 @@ public class PSSafeReload extends CordovaPlugin {
             String healthCheckJs =
             "(function () { " +
                 "if (typeof Package === 'undefined' || " +
-                    "! Package['safe-reload'] || " +
-                    "! Package['safe-reload'].SafeReload || " + 
-                    "! Package['safe-reload'].SafeReload.healthy() ) { " + 
+                    "! Package['percolate:safe-reload'] || " +
+                    "! Package['percolate:safe-reload'].SafeReload || " + 
+                    "! Package['percolate:safe-reload'].SafeReload.healthy() ) { " + 
                     "return 'failed'; " +
                 "} " +
                 "else { " +
