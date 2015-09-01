@@ -8,8 +8,8 @@
     <license>Apache 2.0</license>
     <keywords>cordova,meteor,reload</keywords>
     <repo>https://github.com/percolatestudio/cordova-plugin-safe-reload.git</repo>
-    
-    <dependency id="org.apache.cordova.file" />
+
+    <dependency id="cordova-plugin-file" />
     <dependency id="com.meteor.cordova-update" />
 
     <js-module src="www/SafeReload.js" name="SafeReload">
