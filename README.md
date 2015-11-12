@@ -6,11 +6,11 @@ SafeReload attempts to recover from this situation.  After a window reload event
 
 ## Usage
 
-Install like `cordova plugin add https://github.com/percolatestudio/cordova-plugin-safe-reload.git`.
+Install via Atmosphere: `meteor add percolate:safe-reload`.
 
 No application-level code changes required.  Currently only iOS and Android supported.
 
-## License 
+## License
 
 MIT. (c) Percolate Studio, maintained by Tim Hingston (@timbotnik).
 

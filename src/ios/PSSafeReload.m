@@ -39,7 +39,7 @@
 {
     NSString *currentUrl = [self.webView.request.URL.absoluteString copy];
     NSLog(@"SafeReload pageDidLoad %@", currentUrl);
-    
+
     if (!self.appBundleRootUrl
         && [currentUrl rangeOfString:@"file://"].location != NSNotFound) {
         self.appBundleRootUrl = [NSURL URLWithString:currentUrl];
@@ -80,10 +80,10 @@
     else {
         NSString *healthCheckJs =
             @"(function () { \
-                if (typeof Package === 'undefined' || \
-                    ! Package['safe-reload'] || \
-                    ! Package['safe-reload'].SafeReload || \
-                    ! Package['safe-reload'].SafeReload.healthy() ) { \
+                var srPackage = Package && (Package['percolate:safe-reload'] || Package['safe-reload']); \
+                if (! srPackage || \
+                    ! srPackage.SafeReload || \
+                    ! srPackage.SafeReload.healthy() ) { \
                     return 'failed'; \
                 } \
                 else { \
@@ -106,7 +106,7 @@
     NSLog(@"SafeReload healthCheckFailed");
     NSLog(@"This is likely due to a broken Hot Code Push.");
     [self cancelTimer];
-    
+
     if ([self trashCurrentVersion]) {
         if (self.appBundleRootUrl) {
             NSURLRequest* appReq = [NSURLRequest requestWithURL:self.appBundleRootUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
@@ -124,7 +124,7 @@
     NSString* libPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     NSString* meteorAppPath = [libPath stringByAppendingString:@"/NoCloud/meteor"];
     NSString* versionFilePath = [meteorAppPath stringByAppendingPathComponent:@"version"];
-    
+
     NSError *error;
     BOOL success = false;
     NSFileManager* fileMgr = [[NSFileManager alloc] init];

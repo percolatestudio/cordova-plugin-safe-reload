@@ -45,7 +45,7 @@ public class PSSafeReload extends CordovaPlugin {
         if (id.equals("onPageFinished")) {
             String currentUrl = (String)data;
             Log.d(LOG_TAG, "SafeReload pageDidLoad " + currentUrl);
-        
+
             if (appBundleRootUrl == null
                 && currentUrl.startsWith("file://")) {
                 appBundleRootUrl = currentUrl;
@@ -63,7 +63,7 @@ public class PSSafeReload extends CordovaPlugin {
 
         reloadTimer = new Timer();
         initializeTimerTask();
-        
+
         reloadTimer.schedule(reloadTimerTask, (long)(1000*SR_HEALTH_CHECK_INTERVAL), (long)(1000*SR_HEALTH_CHECK_INTERVAL));
         timerStartedAt = SystemClock.elapsedRealtime();
     }
@@ -95,10 +95,10 @@ public class PSSafeReload extends CordovaPlugin {
         else {
             String healthCheckJs =
             "(function () { " +
-                "if (typeof Package === 'undefined' || " +
-                    "! Package['safe-reload'] || " +
-                    "! Package['safe-reload'].SafeReload || " + 
-                    "! Package['safe-reload'].SafeReload.healthy() ) { " + 
+                "var srPackage = Package && (Package['percolate:safe-reload'] || Package['safe-reload']); " +
+                "if (! srPackage || " +
+                    "! srPackage.SafeReload || " +
+                    "! srPackage.SafeReload.healthy() ) { " +
                     "return 'failed'; " +
                 "} " +
                 "else { " +
@@ -136,7 +136,7 @@ public class PSSafeReload extends CordovaPlugin {
         Log.d(LOG_TAG, "SafeReload healthCheckFailed");
         Log.d(LOG_TAG, "This is likely due to a broken Hot Code Push.");
         cancelTimer();
-        if (trashCurrentVersion()) {       
+        if (trashCurrentVersion()) {
             if (appBundleRootUrl != null) {
                 webView.loadUrlIntoView(appBundleRootUrl, true);
             }

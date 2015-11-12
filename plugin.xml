@@ -10,7 +10,6 @@
     <repo>https://github.com/percolatestudio/cordova-plugin-safe-reload.git</repo>
 
     <dependency id="cordova-plugin-file" />
-    <dependency id="com.meteor.cordova-update" />
 
     <js-module src="www/SafeReload.js" name="SafeReload">
         <clobbers target="cordova.plugins.percolatestudio.SafeReload" />
