@@ -37,7 +37,7 @@
 
 - (void)pageDidLoad:(NSNotification*)notification
 {
-    NSString *currentUrl = [self.webView.request.URL.absoluteString copy];
+    NSString *currentUrl = [((UIWebView*)self.webView).request.URL.absoluteString copy];
     NSLog(@"SafeReload pageDidLoad %@", currentUrl);
 
     if (!self.appBundleRootUrl
