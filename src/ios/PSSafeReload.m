@@ -37,7 +37,7 @@
 
 - (void)pageDidLoad:(NSNotification*)notification
 {
-    NSString *currentUrl = [self.webView.request.URL.absoluteString copy];
+    NSString *currentUrl = [((UIWebView*)self.webView).request.URL.absoluteString copy];
     NSLog(@"SafeReload pageDidLoad %@", currentUrl);
 
     if (!self.appBundleRootUrl
@@ -110,10 +110,10 @@
     if ([self trashCurrentVersion]) {
         if (self.appBundleRootUrl) {
             NSURLRequest* appReq = [NSURLRequest requestWithURL:self.appBundleRootUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
-            [self.webView loadRequest:appReq];
+            [((UIWebView*)self.webView) loadRequest:appReq];
         }
-        else if (self.webView.canGoBack) {
-            [self.webView goBack];
+        else if (((UIWebView*)self.webView).canGoBack) {
+            [((UIWebView*)self.webView) goBack];
         }
     }
 }
